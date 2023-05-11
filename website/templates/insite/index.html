@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Line Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+  <style>
+    #chart2 {
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <div id="chart2"></div>
+  <script>
+    var options = {
+      series: [
+        {
+          name: "อุณหภูมิ",
+          data: [
+           `{% for item in lastesdata7 %}
+            {{item.Temperature}}`,`
+            {% endfor %}`
+          ]
+        }
+      ],
+      chart: {
+        height: 400,
+        width: 600,
+        
+        type: 'line',
+        dropShadow: {
+          enabled: true,
+          color: '#000',
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2
+        },
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#FF8C00', '#808080'],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Weather Sensor Temperature / Time7',
+        align: 'left'
+      },
+      grid: {
+        borderColor: '#e7e7e7',
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        },
+      },
+      markers: {
+        size: 1
+      },
+      xaxis: {
+        categories: ['1', '2', '3', '4', '5', '6', '7'],
+        title: {
+          text: 'TIME'
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Temperature (°C)'
+        },
+        min: 10,
+        max: 50
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right',
+        floating: true,
+        offsetY: -25,
+        offsetX: -5
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    });
+
+    var options2 = {
+      series: [
+        {
+          name: "ความชื้นในอากาศ",
+          data: [
+            `{% for item in lastesdata7 %}
+            {{item.Humidity}}`,`
+            {% endfor %}`
+          ]
+        }
+      ],
+      chart: {
+        height: 400,
+        width: 600,
+        type: 'line',
+        dropShadow: {
+          enabled: true,
+          color: '#000',
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2
+        },
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#2E8B57', '#808080'],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Weather Sensor Humidity / Time7',
+        align: 'left'
+      },
+      grid: {
+        borderColor: '#e7e7e7',
+        row: {
+          colors: ['#f3f3f3', 'transparent'], 
+          opacity: 0.5
+        },
+      },
+      markers: {
+        size: 1
+      },
+      xaxis: {
+        categories: ['1', '2', '3', '4', '5', '6', '7'],
+        title: {
+          text: 'TIME'
+        }
+              },
+        yaxis: {
+          itle: 
+          {
+          text: 'Humidity (%)'
+        },
+        min: 10,
+        max: 100
+        },
+          legend: 
+          {
+        position: 'left',
+        horizontalAlign: 'left',
+        floating: true,
+        offsetY: -25,
+        offsetX: -5
+              }
+              };
+document.addEventListener('DOMContentLoaded', function () {
+  var chart = new ApexCharts(document.querySelector("#chart2"), options2);
+  chart.render();
+});
+</script>
+</body>
+</html>
